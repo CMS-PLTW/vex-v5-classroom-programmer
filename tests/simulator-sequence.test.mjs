@@ -282,6 +282,15 @@ test("playgrounds provide dynamic obstacles without stopping the running program
   assert.doesNotMatch(collisionSource, /setLeftDirection\(0\)|setRightDirection\(0\)|setRunState\("paused"\)/);
 });
 
+test("project snapshots capture the active code workspace and playground", () => {
+  assert.match(pageSource, /Download project snapshot/);
+  assert.match(pageSource, /downloadProjectSnapshot/);
+  assert.match(pageSource, /workspaceSnapshotRef/);
+  assert.match(pageSource, /playgroundSnapshotRef/);
+  assert.match(pageSource, /toPng\(workspace/);
+  assert.match(pageSource, /toPng\(playground/);
+});
+
 test("crates can be pushed into visible delivery goals", () => {
   assert.match(pageSource, /behavior: "pushable"/);
   assert.match(pageSource, /function canMovePlaygroundObject/);
